@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import Nav from '@/components/layout/Nav'
+import Footer from '@/components/layout/Footer'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://aurra.io'),
@@ -45,7 +47,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="antialiased bg-white text-aurra-dark">{children}</body>
+      <body className="antialiased bg-white text-aurra-dark">
+        <Nav />
+        {children}
+        <Footer />
+      </body>
     </html>
   )
 }

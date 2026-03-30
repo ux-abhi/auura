@@ -1,5 +1,3 @@
-import Nav from '@/components/layout/Nav'
-import Footer from '@/components/layout/Footer'
 import Hero from '@/components/sections/Hero'
 import Ticker from '@/components/sections/Ticker'
 import HowItWorks from '@/components/sections/HowItWorks'
@@ -12,20 +10,16 @@ import Preorder from '@/components/sections/Preorder'
 
 export default function Home() {
   return (
-    <>
-      <Nav />
-      <main>
-        <Hero />
-        <Ticker />
-        <HowItWorks />
-        <TechReveal />
-        <Features />
-        <Gallery />
-        <Designs />
-        <Specs />
-        <Preorder />
-      </main>
-      <Footer />
-    </>
+    <main>
+      <Hero />
+      <Ticker />
+      <HowItWorks />
+      <TechReveal />
+      <Features />
+      <Gallery />
+      <Designs />
+      <Specs />
+      <Preorder />
+    </main>
   )
 }
