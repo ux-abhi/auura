@@ -2,15 +2,18 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useRouter } from 'next/navigation'
 
 const NAV_LINKS = [
   { label: 'How it works', href: '#how-it-works' },
   { label: 'Features', href: '#features' },
   { label: 'Specs', href: '#specs' },
+  { label: 'About', href: '/about' },
   { label: 'Pre-order', href: '#preorder' },
 ]
 
 export default function Nav() {
+  const router = useRouter()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
@@ -37,12 +40,18 @@ export default function Nav() {
     return () => observers.forEach((o) => o.disconnect())
   }, [])
 
-  const scrollTo = useCallback((href: string) => {
-    const id = href.replace('#', '')
-    const el = document.getElementById(id)
-    if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 52, behavior: 'smooth' })
+  const handleNavClick = useCallback((href: string) => {
     setMobileOpen(false)
-  }, [])
+    if (href.startsWith('/')) {
+      router.push(href)
+    } else {
+      const id = href.replace('#', '')
+      const el = document.getElementById(id)
+      if (el) {
+        window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 52, behavior: 'smooth' })
+      }
+    }
+  }, [router])
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
@@ -74,7 +83,7 @@ export default function Nav() {
               return (
                 <button
                   key={link.href}
-                  onClick={() => scrollTo(link.href)}
+                  onClick={() => handleNavClick(link.href)}
                   className={`text-[13px] tracking-[0.02em] transition-colors duration-200 link-underline cursor-pointer ${
                     isActive ? 'text-aurra-dark' : 'text-aurra-mid hover:text-aurra-dark'
                   }`}
@@ -90,7 +99,7 @@ export default function Nav() {
             <motion.button
               whileHover={{ scale: 1.02, backgroundColor: '#000000' }}
               whileTap={{ scale: 0.97 }}
-              onClick={() => scrollTo('#preorder')}
+              onClick={() => handleNavClick('#preorder')}
               className="hidden md:flex items-center justify-center bg-aurra-dark text-white text-[13px] tracking-[0.03em] font-body transition-colors duration-200 cursor-pointer"
               style={{ height: 28, paddingLeft: 16, paddingRight: 16 }}
             >
@@ -150,7 +159,7 @@ export default function Nav() {
                     hidden: { opacity: 0, y: 16 },
                     visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
                   }}
-                  onClick={() => scrollTo(link.href)}
+                  onClick={() => handleNavClick(link.href)}
                   className="font-display text-[30px] font-normal text-aurra-dark tracking-[-0.01em] hover:opacity-60 transition-opacity duration-200 cursor-pointer"
                 >
                   {link.label}
@@ -161,7 +170,7 @@ export default function Nav() {
                   hidden: { opacity: 0, y: 16 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } },
                 }}
-                onClick={() => scrollTo('#preorder')}
+                onClick={() => handleNavClick('#preorder')}
                 className="mt-4 bg-aurra-dark text-white text-[14px] tracking-[0.06em] px-8 py-3 hover:bg-black transition-colors duration-200 cursor-pointer"
               >
                 Reserve — €299
