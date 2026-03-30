@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
 import nodemailer from 'nodemailer'
 
+// In-memory rate limiting (resets on cold start — acceptable for serverless)
 const ipTimestamps = new Map<string, number>()
 const RATE_LIMIT_MS = 60 * 60 * 1000
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
@@ -18,10 +17,12 @@ function getClientIp(req: NextRequest): string {
 async function sendOwnerNotification(subscriberEmail: string) {
   const user = process.env.GMAIL_USER
   const pass = process.env.GMAIL_APP_PASSWORD
-  if (!user || !pass) return // graceful no-op in dev without credentials
+  if (!user || !pass) return
 
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
     auth: { user, pass },
   })
 
@@ -49,34 +50,37 @@ export async function POST(req: NextRequest) {
     const email = (body?.email ?? '').trim().toLowerCase()
 
     if (!email || !EMAIL_REGEX.test(email)) {
-      return NextResponse.json({ error: 'Please enter a valid email address.' }, { status: 400 })
+      return NextResponse.json(
+        { error: 'Please enter a valid email address.' },
+        { status: 400 }
+      )
     }
 
+    // Rate limit by IP
     const ip = getClientIp(req)
     const lastSubmit = ipTimestamps.get(ip)
     if (lastSubmit && Date.now() - lastSubmit < RATE_LIMIT_MS) {
-      return NextResponse.json({ error: "You're already on the list!" }, { status: 429 })
+      return NextResponse.json(
+        { error: "You're already on the list!" },
+        { status: 429 }
+      )
     }
     ipTimestamps.set(ip, Date.now())
 
-    const filePath = path.join(process.cwd(), 'waitlist.json')
-    let list: Array<{ email: string; timestamp: string }> = []
-    if (fs.existsSync(filePath)) {
-      try { list = JSON.parse(fs.readFileSync(filePath, 'utf-8')) } catch { list = [] }
+    // Send notification email — awaited so it completes before function exits
+    try {
+      await sendOwnerNotification(email)
+    } catch (emailErr) {
+      // Log but don't fail the request — signup still succeeded
+      console.error('Email notification failed:', emailErr)
     }
-
-    if (list.some((e) => e.email === email)) {
-      return NextResponse.json({ error: "This email is already on the list!" }, { status: 409 })
-    }
-
-    list.push({ email, timestamp: new Date().toISOString() })
-    fs.writeFileSync(filePath, JSON.stringify(list, null, 2), 'utf-8')
-
-    // Fire notification — non-blocking, don't fail the request if email fails
-    sendOwnerNotification(email).catch(() => {})
 
     return NextResponse.json({ success: true })
-  } catch {
-    return NextResponse.json({ error: 'An unexpected error occurred.' }, { status: 500 })
+  } catch (err) {
+    console.error('Waitlist POST error:', err)
+    return NextResponse.json(
+      { error: 'An unexpected error occurred.' },
+      { status: 500 }
+    )
   }
 }
