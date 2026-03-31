@@ -83,7 +83,7 @@ export default function PrivacyPage() {
               This Privacy Policy explains how Aurra Technologies ("Aurra", "we", "us") handles information when you use the Aurra BCI pendant, the Aurra companion app (iOS and Android), and the aurra.io website (together, the "Services").
             </p>
             <p className="font-body text-[16px] text-aurra-mid leading-[1.8] mb-4" style={{ fontWeight: 300 }}>
-              We have written this policy to be readable by a person, not a lawyer. If something is unclear, email us at <a href="mailto:privacy@aurra.io" className="text-aurra-dark hover:opacity-60 transition-opacity">privacy@aurra.io</a> and we will explain it plainly.
+              We have written this policy to be readable by a person, not a lawyer. If something is unclear, email us at <a href="mailto:buyaurra@gmail.com" className="text-aurra-dark hover:opacity-60 transition-opacity">buyaurra@gmail.com</a> and we will explain it plainly.
             </p>
             <p className="font-body text-[16px] text-aurra-mid leading-[1.8]" style={{ fontWeight: 300 }}>
               By using our Services, you agree to the practices described in this policy. If you do not agree, please do not use our Services.
@@ -213,7 +213,7 @@ export default function PrivacyPage() {
               If you submitted your email for the pre-order waitlist, we retain your email address until you unsubscribe or request deletion. Every email we send includes a one-click unsubscribe link.
             </p>
             <p className="font-body text-[15px] text-aurra-mid leading-[1.8]" style={{ fontWeight: 300 }}>
-              To request deletion of your email from our records, email <a href="mailto:privacy@aurra.io" className="text-aurra-dark hover:opacity-60 transition-opacity">privacy@aurra.io</a> with the subject "Delete my data". We will confirm deletion within 7 days.
+              To request deletion of your email from our records, email <a href="mailto:buyaurra@gmail.com" className="text-aurra-dark hover:opacity-60 transition-opacity">buyaurra@gmail.com</a> with the subject "Delete my data". We will confirm deletion within 7 days.
             </p>
           </section>
 
@@ -233,7 +233,7 @@ export default function PrivacyPage() {
               <li>· <strong className="text-aurra-dark font-normal">Right to withdraw consent</strong> — where processing is based on consent, you can withdraw it at any time.</li>
             </ul>
             <p className="font-body text-[15px] text-aurra-mid leading-[1.8]" style={{ fontWeight: 300 }}>
-              To exercise any of these rights, contact us at <a href="mailto:privacy@aurra.io" className="text-aurra-dark hover:opacity-60 transition-opacity">privacy@aurra.io</a>. We will respond within 30 days. If you are dissatisfied with our response, you have the right to lodge a complaint with your local data protection authority. In Germany, this is the Landesbeauftragter für den Datenschutz (LfDI).
+              To exercise any of these rights, contact us at <a href="mailto:buyaurra@gmail.com" className="text-aurra-dark hover:opacity-60 transition-opacity">buyaurra@gmail.com</a>. We will respond within 30 days. If you are dissatisfied with our response, you have the right to lodge a complaint with your local data protection authority. In Germany, this is the Landesbeauftragter für den Datenschutz (LfDI).
             </p>
           </section>
 
@@ -252,7 +252,7 @@ export default function PrivacyPage() {
               <li>· <strong className="text-aurra-dark font-normal">No tracking infrastructure</strong> — aurra.io does not use third-party analytics, advertising pixels, or session recording tools that could expose visitor data.</li>
             </ul>
             <p className="font-body text-[15px] text-aurra-mid leading-[1.8]" style={{ fontWeight: 300 }}>
-              No security measure is perfect. If you discover a vulnerability, please report it responsibly to <a href="mailto:security@aurra.io" className="text-aurra-dark hover:opacity-60 transition-opacity">security@aurra.io</a>. We commit to acknowledging reports within 48 hours and resolving confirmed vulnerabilities within 90 days.
+              No security measure is perfect. If you discover a vulnerability, please report it responsibly to <a href="mailto:buyaurra@gmail.com" className="text-aurra-dark hover:opacity-60 transition-opacity">buyaurra@gmail.com</a>. We commit to acknowledging reports within 48 hours and resolving confirmed vulnerabilities within 90 days.
             </p>
           </section>
 
@@ -276,7 +276,7 @@ export default function PrivacyPage() {
           <section id="children" style={{ marginTop: 64 }}>
             <h2 className="font-body text-[22px] font-medium text-aurra-dark mb-4">Children&apos;s privacy</h2>
             <p className="font-body text-[16px] text-aurra-mid leading-[1.8] mb-3" style={{ fontWeight: 300 }}>
-              Aurra is not intended for use by children under the age of 16. We do not knowingly collect personal data from children under 16. If you believe a child under 16 has submitted data to us, please contact <a href="mailto:privacy@aurra.io" className="text-aurra-dark hover:opacity-60 transition-opacity">privacy@aurra.io</a> and we will delete it promptly.
+              Aurra is not intended for use by children under the age of 16. We do not knowingly collect personal data from children under 16. If you believe a child under 16 has submitted data to us, please contact <a href="mailto:buyaurra@gmail.com" className="text-aurra-dark hover:opacity-60 transition-opacity">buyaurra@gmail.com</a> and we will delete it promptly.
             </p>
             <p className="font-body text-[15px] text-aurra-mid leading-[1.8]" style={{ fontWeight: 300 }}>
               For users aged 16–18, we recommend reviewing this policy with a parent or guardian.
@@ -307,10 +307,7 @@ export default function PrivacyPage() {
               For privacy questions, data requests, or security disclosures:
             </p>
             <div className="font-body text-[15px] text-aurra-mid leading-[1.9] mb-6 space-y-1" style={{ fontWeight: 300 }}>
-              <p>Privacy: <a href="mailto:privacy@aurra.io" className="text-aurra-dark hover:opacity-60 transition-opacity">privacy@aurra.io</a></p>
-              <p>Security: <a href="mailto:security@aurra.io" className="text-aurra-dark hover:opacity-60 transition-opacity">security@aurra.io</a></p>
-              <p>Research: <a href="mailto:research@aurra.io" className="text-aurra-dark hover:opacity-60 transition-opacity">research@aurra.io</a></p>
-              <p>General: <a href="mailto:hello@aurra.io" className="text-aurra-dark hover:opacity-60 transition-opacity">hello@aurra.io</a></p>
+              <p>All enquiries: <a href="mailto:buyaurra@gmail.com" className="text-aurra-dark hover:opacity-60 transition-opacity">buyaurra@gmail.com</a></p>
             </div>
             <div className="font-body text-[15px] text-aurra-mid leading-[1.7]" style={{ fontWeight: 300 }}>
               <p>Aurra Technologies</p>

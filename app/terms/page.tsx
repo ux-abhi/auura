@@ -23,10 +23,10 @@ export default function TermsPage() {
         <p className="font-body text-[15px] text-aurra-mid leading-[1.8]" style={{ fontWeight: 300 }}>
           Questions in the meantime?{' '}
           <a
-            href="mailto:hello@aurra.io"
+            href="mailto:buyaurra@gmail.com"
             className="text-aurra-dark hover:opacity-60 transition-opacity duration-200"
           >
-            hello@aurra.io
+            buyaurra@gmail.com
           </a>
         </p>
 
