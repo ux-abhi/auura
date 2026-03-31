@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useRouter } from 'next/navigation'
+import { useRouter, usePathname } from 'next/navigation'
 
 const NAV_LINKS = [
   { label: 'How it works', href: '#how-it-works' },
@@ -14,9 +14,11 @@ const NAV_LINKS = [
 
 export default function Nav() {
   const router = useRouter()
+  const pathname = usePathname()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('')
+  const isHome = pathname === '/'
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -24,7 +26,9 @@ export default function Nav() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Only observe sections when on home page
   useEffect(() => {
+    if (!isHome) return
     const sections = ['how-it-works', 'features', 'specs', 'preorder']
     const observers: IntersectionObserver[] = []
     sections.forEach((id) => {
@@ -38,20 +42,23 @@ export default function Nav() {
       observers.push(observer)
     })
     return () => observers.forEach((o) => o.disconnect())
-  }, [])
+  }, [isHome])
 
   const handleNavClick = useCallback((href: string) => {
     setMobileOpen(false)
     if (href.startsWith('/')) {
       router.push(href)
-    } else {
-      const id = href.replace('#', '')
-      const el = document.getElementById(id)
-      if (el) {
-        window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 52, behavior: 'smooth' })
+    } else if (href.startsWith('#')) {
+      if (isHome) {
+        const id = href.replace('#', '')
+        const el = document.getElementById(id)
+        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 52, behavior: 'smooth' })
+      } else {
+        // Navigate to home page with the hash — browser will scroll to section
+        router.push(`/${href}`)
       }
     }
-  }, [router])
+  }, [router, isHome])
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? 'hidden' : ''
@@ -69,7 +76,7 @@ export default function Nav() {
         <div className="flex items-center justify-between h-full px-6 mx-auto" style={{ maxWidth: 980 }}>
           {/* Logo */}
           <button
-            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            onClick={() => isHome ? window.scrollTo({ top: 0, behavior: 'smooth' }) : router.push('/')}
             className="font-display text-[19px] font-normal tracking-[-0.01em] text-aurra-dark select-none hover:opacity-70 transition-opacity duration-200 cursor-pointer"
           >
             aurra
@@ -79,13 +86,14 @@ export default function Nav() {
           <nav className="hidden md:flex items-center gap-7">
             {NAV_LINKS.map((link) => {
               const id = link.href.replace('#', '')
-              const isActive = activeSection === id
+              const isActive = isHome && activeSection === id
+              const isCurrentPage = !link.href.startsWith('#') && pathname === link.href
               return (
                 <button
                   key={link.href}
                   onClick={() => handleNavClick(link.href)}
                   className={`text-[13px] tracking-[0.02em] transition-colors duration-200 link-underline cursor-pointer ${
-                    isActive ? 'text-aurra-dark' : 'text-aurra-mid hover:text-aurra-dark'
+                    isActive || isCurrentPage ? 'text-aurra-dark' : 'text-aurra-mid hover:text-aurra-dark'
                   }`}
                 >
                   {link.label}

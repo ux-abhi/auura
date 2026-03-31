@@ -35,7 +35,7 @@ export default function TermsPage() {
             href="/"
             className="font-body text-[14px] text-aurra-mid hover:text-aurra-dark transition-colors duration-200"
           >
-            ← Back to aurra.io
+            ← Back to aurra
           </Link>
         </div>
       </div>

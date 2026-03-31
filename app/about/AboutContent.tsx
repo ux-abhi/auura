@@ -178,10 +178,31 @@ export default function AboutContent() {
         className="relative flex flex-col justify-end px-6 overflow-hidden"
         style={{ minHeight: '92vh', background: '#0a0a0b', paddingBottom: '10vh' }}
       >
-        {/* Subtle radial glow */}
+        {/* Animated blue gradient orbs */}
+        <motion.div
+          animate={{ x: [0, 40, -30, 0], y: [0, -30, 40, 0], scale: [1, 1.15, 0.9, 1] }}
+          transition={{ duration: 16, repeat: Infinity, ease: 'easeInOut' }}
+          className="pointer-events-none absolute"
+          style={{
+            width: 700, height: 700, borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(59,130,246,0.18) 0%, rgba(99,102,241,0.10) 40%, transparent 70%)',
+            filter: 'blur(80px)', top: '5%', left: '20%',
+          }}
+        />
+        <motion.div
+          animate={{ x: [0, -50, 20, 0], y: [0, 40, -20, 0], scale: [1, 0.9, 1.1, 1] }}
+          transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
+          className="pointer-events-none absolute"
+          style={{
+            width: 500, height: 500, borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(139,92,246,0.12) 0%, rgba(59,130,246,0.07) 50%, transparent 70%)',
+            filter: 'blur(70px)', top: '30%', right: '10%',
+          }}
+        />
+        {/* Subtle radial warm glow at bottom */}
         <div
           className="pointer-events-none absolute inset-0"
-          style={{ background: 'radial-gradient(ellipse 70% 60% at 50% 80%, rgba(120,100,80,0.12) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(ellipse 60% 40% at 50% 100%, rgba(59,100,160,0.08) 0%, transparent 70%)' }}
         />
         {/* Grid lines */}
         <div className="pointer-events-none absolute inset-0 opacity-[0.03]"
@@ -193,7 +214,7 @@ export default function AboutContent() {
             <div className="inline-flex items-center gap-2 mb-8">
               <span className="w-1.5 h-1.5 rounded-full bg-white/40" />
               <span className="font-body text-[12px] tracking-[0.14em] uppercase" style={{ color: 'rgba(255,255,255,0.4)' }}>
-                Research-backed · aurra.io
+                Research-backed · aurra
               </span>
             </div>
           </FadeIn>
@@ -473,7 +494,7 @@ export default function AboutContent() {
                 </p>
                 <div className="pt-4">
                   <a
-                    href="mailto:research@aurra.io?subject=Research Report Request"
+                    href="mailto:shubhrasar7@gmail.com?subject=Research Report Request"
                     className="inline-flex items-center gap-2 font-body text-[14px] text-aurra-dark border-b border-aurra-dark pb-0.5 hover:opacity-50 transition-opacity duration-200"
                     style={{ fontWeight: 400 }}
                   >
@@ -521,7 +542,7 @@ export default function AboutContent() {
                 Reserve your Aurra — €299
               </Link>
               <a
-                href="mailto:research@aurra.io?subject=Research Report Request"
+                href="mailto:shubhrasar7@gmail.com?subject=Research Report Request"
                 className="font-body text-[13px] tracking-[0.04em] hover:opacity-70 transition-opacity duration-200"
                 style={{ color: 'rgba(255,255,255,0.35)' }}
               >

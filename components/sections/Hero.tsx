@@ -76,7 +76,7 @@ export default function Hero() {
           transition={{ delay: 0.2 }}
           className="text-[12px] tracking-[0.18em] uppercase text-aurra-mid mb-8 font-body"
         >
-          BCI Wearable · aurra.io
+          BCI Wearable · aurra
         </motion.p>
 
         {/* Headline */}
