@@ -28,7 +28,7 @@ export default function Footer() {
 
         {/* Bottom attribution row */}
         <p className="text-center text-[11px] text-aurra-mid font-body" style={{ opacity: 0.6 }}>
-          A product by Shubhradip Sar · +49-15510834863
+          A product by Shubhradip Sar & Abhishek Jha · +49-15510834863
         </p>
       </div>
     </footer>
